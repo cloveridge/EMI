@@ -1,0 +1,10 @@
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.exe.config
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.exe
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.pdb
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csprojAssemblyReference.cache
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.Properties.Resources.resources
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csproj.GenerateResource.cache
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csproj.CoreCompileInputs.cache
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.exe
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.pdb
+c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.mainMenuForm.resources
