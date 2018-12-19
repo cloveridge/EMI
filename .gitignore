@@ -1,0 +1,6 @@
+*.log
+*Packages*
+*SQLite*
+*sqlite*
+localsettings.config
+dirname
