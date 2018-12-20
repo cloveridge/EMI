@@ -28,7 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // closeButton
+            // 
+            this.closeButton.Location = new System.Drawing.Point(783, 771);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
+            this.closeButton.TabIndex = 0;
+            this.closeButton.Text = "Close";
+            this.closeButton.UseVisualStyleBackColor = true;
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // ClientLookupForm
             // 
@@ -37,8 +48,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::EstateMastersInstitute.Properties.Resources.LogoMakr_0bqKV6;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1024, 889);
+            this.ClientSize = new System.Drawing.Size(1020, 885);
             this.ControlBox = false;
+            this.Controls.Add(this.closeButton);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
@@ -52,5 +64,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button closeButton;
     }
 }

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.newClientButton = new System.Windows.Forms.PictureBox();
+            this.EditClientButton = new System.Windows.Forms.PictureBox();
             this.clientLookupButton = new System.Windows.Forms.PictureBox();
             this.invoicingButton = new System.Windows.Forms.PictureBox();
             this.mailingButton = new System.Windows.Forms.PictureBox();
             this.exitButton = new System.Windows.Forms.PictureBox();
-            this.newClientLabel = new System.Windows.Forms.Label();
+            this.EditClientLabel = new System.Windows.Forms.Label();
             this.clientLookupLabel = new System.Windows.Forms.Label();
             this.invoicingLabel = new System.Windows.Forms.Label();
             this.mailingLabel = new System.Windows.Forms.Label();
@@ -42,25 +42,25 @@
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.developerLinkLabel = new System.Windows.Forms.LinkLabel();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            ((System.ComponentModel.ISupportInitialize)(this.newClientButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditClientButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientLookupButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicingButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mailingButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.exitButton)).BeginInit();
             this.SuspendLayout();
             // 
-            // newClientButton
+            // EditClientButton
             // 
-            this.newClientButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.newClientButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newClientButton.Image = global::EstateMastersInstitute.Properties.Resources.New_Customer_Icon;
-            this.newClientButton.Location = new System.Drawing.Point(31, 141);
-            this.newClientButton.Name = "newClientButton";
-            this.newClientButton.Size = new System.Drawing.Size(94, 86);
-            this.newClientButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.newClientButton.TabIndex = 0;
-            this.newClientButton.TabStop = false;
-            this.newClientButton.Click += new System.EventHandler(this.newClientButton_Click);
+            this.EditClientButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EditClientButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditClientButton.Image = global::EstateMastersInstitute.Properties.Resources.New_Customer_Icon;
+            this.EditClientButton.Location = new System.Drawing.Point(31, 141);
+            this.EditClientButton.Name = "EditClientButton";
+            this.EditClientButton.Size = new System.Drawing.Size(94, 86);
+            this.EditClientButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.EditClientButton.TabIndex = 0;
+            this.EditClientButton.TabStop = false;
+            this.EditClientButton.Click += new System.EventHandler(this.EditClientButton_Click);
             // 
             // clientLookupButton
             // 
@@ -114,18 +114,18 @@
             this.exitButton.TabStop = false;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // newClientLabel
+            // EditClientLabel
             // 
-            this.newClientLabel.AutoSize = true;
-            this.newClientLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.newClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newClientLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.newClientLabel.Location = new System.Drawing.Point(27, 219);
-            this.newClientLabel.Name = "newClientLabel";
-            this.newClientLabel.Size = new System.Drawing.Size(101, 24);
-            this.newClientLabel.TabIndex = 5;
-            this.newClientLabel.Text = "New Client";
-            this.newClientLabel.Click += new System.EventHandler(this.newClientLabel_Click);
+            this.EditClientLabel.AutoSize = true;
+            this.EditClientLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.EditClientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EditClientLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.EditClientLabel.Location = new System.Drawing.Point(27, 219);
+            this.EditClientLabel.Name = "EditClientLabel";
+            this.EditClientLabel.Size = new System.Drawing.Size(101, 24);
+            this.EditClientLabel.TabIndex = 5;
+            this.EditClientLabel.Text = "New Client";
+            this.EditClientLabel.Click += new System.EventHandler(this.EditClientLabel_Click);
             // 
             // clientLookupLabel
             // 
@@ -226,12 +226,12 @@
             this.ClientSize = new System.Drawing.Size(1020, 885);
             this.Controls.Add(this.developerLinkLabel);
             this.Controls.Add(this.copyrightLabel);
-            this.Controls.Add(this.newClientLabel);
+            this.Controls.Add(this.EditClientLabel);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.mailingButton);
             this.Controls.Add(this.invoicingButton);
             this.Controls.Add(this.clientLookupButton);
-            this.Controls.Add(this.newClientButton);
+            this.Controls.Add(this.EditClientButton);
             this.Controls.Add(this.clientLookupLabel);
             this.Controls.Add(this.mailingLabel);
             this.Controls.Add(this.invoicingLabel);
@@ -246,7 +246,7 @@
             this.Name = "mainMenuForm";
             this.Text = "Estate Masters Institute";
             this.Load += new System.EventHandler(this.EstateMastersInstitute_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.newClientButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EditClientButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientLookupButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicingButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mailingButton)).EndInit();
@@ -258,12 +258,12 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox newClientButton;
+        private System.Windows.Forms.PictureBox EditClientButton;
         private System.Windows.Forms.PictureBox clientLookupButton;
         private System.Windows.Forms.PictureBox invoicingButton;
         private System.Windows.Forms.PictureBox mailingButton;
         private System.Windows.Forms.PictureBox exitButton;
-        private System.Windows.Forms.Label newClientLabel;
+        private System.Windows.Forms.Label EditClientLabel;
         private System.Windows.Forms.Label clientLookupLabel;
         private System.Windows.Forms.Label invoicingLabel;
         private System.Windows.Forms.Label mailingLabel;
