@@ -140,9 +140,6 @@ namespace EstateMastersInstitute
             const int MAX_EMAIL_LEN = 40;
             const int MAX_REFERRAL_LEN = 70;
 
-            // Length based on "(###) ###-#### x ####" format
-            const int MAX_PHONE = 21;
-
             // Verify the file number is unique
             // TO-DO: QUERY DATABASE TO SEE IF THE NUMBER IS FREE
             // IF IT ISN'T, THEN DISPLAYS BASIC INFO AND ASKS IF THE 
@@ -219,7 +216,10 @@ namespace EstateMastersInstitute
             // Variables for working with the SQLite3 Database
             SQLiteConnection db_connect;
             SQLiteCommand db_comm;
-            
+
+            // Create connection to database and open it
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
 
 
 
@@ -307,7 +307,37 @@ namespace EstateMastersInstitute
          *****************************************************************/
         private void createTablesButton_Click(object sender, EventArgs e)
         {
+            // Variables for working with the SQLite3 Database
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
 
+            // Create connection to database and open it
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
+
+            // Drop tables
+            try
+            {
+                db_comm = new SQLiteCommand("DROP TABLE Clients;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch(Exception exc)
+            {
+                // Do nothing, because the table doesn't exist to drop.
+            }
+
+            db_comm = new SQLiteCommand("DROP TABLE Invoices;", db_connect);
+            db_comm.ExecuteNonQuery();
+            db_comm = new SQLiteCommand("DROP TABLE Services;", db_connect);
+            db_comm.ExecuteNonQuery();
+            db_comm = new SQLiteCommand("DROP TABLE InvoiceServices;", db_connect);
+            db_comm.ExecuteNonQuery();
+
+
+
+
+            //Close the database connection
+            db_connect.Close();
         }
 
         /*****************************************************************
