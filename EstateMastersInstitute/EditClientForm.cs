@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -126,9 +127,6 @@ namespace EstateMastersInstitute
 
             return phoneNumber;
         }
-
-
-
         
         private void saveAndCloseButton_Click(object sender, EventArgs e)
         {
@@ -201,12 +199,7 @@ namespace EstateMastersInstitute
                 }
             }
 
-
-
-
-
-
-
+            // Verify the input fields
             if (!verifyInput(ClientFirstTextbox, MAX_NAME_LEN, true) ||
                !verifyInput(clientLastTextbox, MAX_NAME_LEN, true) ||
                !verifyInput(clientMiddleTextbox, MAX_M_I_LEN) ||
@@ -217,16 +210,27 @@ namespace EstateMastersInstitute
                !verifyInput(cityTextbox, MAX_CITY_LEN, true) ||
                !verifyInput(countyTextbox, MAX_COUNTY_LEN, true) ||
                !verifyInput(zipTextbox, MAX_ZIP_LEN, true) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-                )
-                
+               !verifyInput(emailTextBox, MAX_EMAIL_LEN) ||
+               !verifyInput(referredByTextbox, MAX_REFERRAL_LEN))
+            {
+                return;
+            }
+
+            // Variables for working with the SQLite3 Database
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
+            
 
 
 
-            // Verify the input fields
+
+
+
+
+
+
+            
+
             // Try to insert a new row in the database
             // If the file already exists, confirm the information hasn't changed much (Same name)
             // If not, go ahead and update the info
