@@ -33,14 +33,14 @@ namespace EstateMastersInstitute
             ExitProgram();
         }
 
-        private void newClientButton_Click(object sender, EventArgs e)
+        private void EditClientButton_Click(object sender, EventArgs e)
         {
-            NewClient();
+            EditClient();
         }
 
-        private void newClientLabel_Click(object sender, EventArgs e)
+        private void EditClientLabel_Click(object sender, EventArgs e)
         {
-            NewClient();
+            EditClient();
         }
 
         private void clientLookupButton_Click(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace EstateMastersInstitute
             MailingOptions();
         }
 
-        private void NewClient()
+        private void EditClient()
         {
             EditClientForm editing_form = new EditClientForm();
             editing_form.ShowDialog();
