@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -126,9 +127,6 @@ namespace EstateMastersInstitute
 
             return phoneNumber;
         }
-
-
-
         
         private void saveAndCloseButton_Click(object sender, EventArgs e)
         {
@@ -141,9 +139,6 @@ namespace EstateMastersInstitute
             const int MAX_ZIP_LEN = 5;
             const int MAX_EMAIL_LEN = 40;
             const int MAX_REFERRAL_LEN = 70;
-
-            // Length based on "(###) ###-#### x ####" format
-            const int MAX_PHONE = 21;
 
             // Verify the file number is unique
             // TO-DO: QUERY DATABASE TO SEE IF THE NUMBER IS FREE
@@ -201,12 +196,7 @@ namespace EstateMastersInstitute
                 }
             }
 
-
-
-
-
-
-
+            // Verify the input fields
             if (!verifyInput(ClientFirstTextbox, MAX_NAME_LEN, true) ||
                !verifyInput(clientLastTextbox, MAX_NAME_LEN, true) ||
                !verifyInput(clientMiddleTextbox, MAX_M_I_LEN) ||
@@ -217,16 +207,30 @@ namespace EstateMastersInstitute
                !verifyInput(cityTextbox, MAX_CITY_LEN, true) ||
                !verifyInput(countyTextbox, MAX_COUNTY_LEN, true) ||
                !verifyInput(zipTextbox, MAX_ZIP_LEN, true) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN) ||
-                )
-                
+               !verifyInput(emailTextBox, MAX_EMAIL_LEN) ||
+               !verifyInput(referredByTextbox, MAX_REFERRAL_LEN))
+            {
+                return;
+            }
+
+            // Variables for working with the SQLite3 Database
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
+
+            // Create connection to database and open it
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
 
 
 
-            // Verify the input fields
+
+
+
+
+
+
+            
+
             // Try to insert a new row in the database
             // If the file already exists, confirm the information hasn't changed much (Same name)
             // If not, go ahead and update the info
@@ -303,7 +307,37 @@ namespace EstateMastersInstitute
          *****************************************************************/
         private void createTablesButton_Click(object sender, EventArgs e)
         {
+            // Variables for working with the SQLite3 Database
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
 
+            // Create connection to database and open it
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
+
+            // Drop tables
+            try
+            {
+                db_comm = new SQLiteCommand("DROP TABLE Clients;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch(Exception exc)
+            {
+                // Do nothing, because the table doesn't exist to drop.
+            }
+
+            db_comm = new SQLiteCommand("DROP TABLE Invoices;", db_connect);
+            db_comm.ExecuteNonQuery();
+            db_comm = new SQLiteCommand("DROP TABLE Services;", db_connect);
+            db_comm.ExecuteNonQuery();
+            db_comm = new SQLiteCommand("DROP TABLE InvoiceServices;", db_connect);
+            db_comm.ExecuteNonQuery();
+
+
+
+
+            //Close the database connection
+            db_connect.Close();
         }
 
         /*****************************************************************

@@ -73,11 +73,11 @@
     <Compile Include="MailOptionsForm.Designer.cs">
       <DependentUpon>MailOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewClientForm.cs">
+    <Compile Include="EditClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NewClientForm.Designer.cs">
-      <DependentUpon>NewClientForm.cs</DependentUpon>
+    <Compile Include="EditClientForm.Designer.cs">
+      <DependentUpon>EditClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,8 +93,8 @@
     <EmbeddedResource Include="MailOptionsForm.resx">
       <DependentUpon>MailOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NewClientForm.resx">
-      <DependentUpon>NewClientForm.cs</DependentUpon>
+    <EmbeddedResource Include="EditClientForm.resx">
+      <DependentUpon>EditClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
