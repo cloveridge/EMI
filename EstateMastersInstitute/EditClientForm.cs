@@ -321,17 +321,57 @@ namespace EstateMastersInstitute
                 db_comm = new SQLiteCommand("DROP TABLE Clients;", db_connect);
                 db_comm.ExecuteNonQuery();
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
-                // Do nothing, because the table doesn't exist to drop.
+                // Write error message to console, to show that something happened/was attempted.
+                Console.WriteLine(exc.Message);
             }
 
-            db_comm = new SQLiteCommand("DROP TABLE Invoices;", db_connect);
-            db_comm.ExecuteNonQuery();
-            db_comm = new SQLiteCommand("DROP TABLE Services;", db_connect);
-            db_comm.ExecuteNonQuery();
-            db_comm = new SQLiteCommand("DROP TABLE InvoiceServices;", db_connect);
-            db_comm.ExecuteNonQuery();
+            try
+            {
+                db_comm = new SQLiteCommand("DROP TABLE Invoices;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                // Write error message to console, to show that something happened/was attempted.
+                Console.WriteLine(exc.Message);
+            }
+
+            try
+            {
+                db_comm = new SQLiteCommand("DROP TABLE Services;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                // Write error message to console, to show that something happened/was attempted.
+                Console.WriteLine(exc.Message);
+            }
+
+            try
+            {
+                db_comm = new SQLiteCommand("DROP TABLE InvoiceServices;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                // Write error message to console, to show that something happened/was attempted.
+                Console.WriteLine(exc.Message);
+            }
+
+            // Create the tables
+            try
+            {
+                db_comm = new SQLiteCommand("CREATE TABLE Clients;", db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+
+
 
 
 
@@ -360,7 +400,10 @@ namespace EstateMastersInstitute
                 }
                 catch(Exception exc)
                 {
-                    if(MessageBox.Show("The specified file could not be located. Remove bad link?", "File Not Found", MessageBoxButtons.YesNo) == DialogResult.Yes);
+                    // Write error message to console, to show that something happened/was attempted.
+                    Console.WriteLine(exc.Message);
+
+                    if (MessageBox.Show("The specified file could not be located. Remove bad link?", "File Not Found", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         // Remove the path, the display filename, and mark that a change has occurred.
                         attachedDocLink = "";
