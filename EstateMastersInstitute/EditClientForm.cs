@@ -22,11 +22,74 @@ namespace EstateMastersInstitute
         public EditClientForm()
         {
             InitializeComponent();
+            clientFirstTextBox.Focus();
+
+        }
+
+        public EditClientForm(string file_num)
+        {
+            InitializeComponent();
+
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
+            SQLiteDataReader reader;
+            String command_text;
+
+            // Create connection to database and open it
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
+
+            try
+            {
+                // Query the database and populate the fields
+                command_text = "SELECT * FROM Clients WHERE client_num = " + file_num.ToString() + ";";
+                db_comm = new SQLiteCommand(command_text, db_connect);
+                reader = db_comm.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    fileNumberTextBox.Text = reader["client_num"].ToString();
+                    creationDateLabel.Text = reader["created_date"].ToString();
+                    modifiedDateLabel.Text = reader["modified_date"].ToString();
+                    clientTitleComboBox.Text = reader["title_1"].ToString();
+                    spouseTitleComboBox.Text = reader["title_2"].ToString();
+                    clientFirstTextBox.Text = reader["first_name_1"].ToString();
+                    spouseLastTextBox.Text = reader["last_name_2"].ToString();
+                    clientLastTextBox.Text = reader["last_name_1"].ToString();
+                    spouseMiddleTextBox.Text = reader["middle_initial_2"].ToString();
+                    clientMiddleTextBox.Text = reader["middle_initial_1"].ToString();
+                    spouseFirstTextBox.Text = reader["first_name_2"].ToString();
+                    addressTextBox.Text = reader["address"].ToString();
+                    zipTextBox.Text = reader["zip"].ToString();
+                    cityTextBox.Text = reader["city"].ToString();
+                    countyTextBox.Text = reader["county"].ToString();
+                    stateComboBox.Text = reader["state"].ToString();
+                    addressUnknownCheckBox.Checked = reader["client_num"].ToString() == "T" ? true : false;
+                    phoneTextBox.Text = reader["main_phone"].ToString();
+                    altPhone1TextBox.Text = reader["alt_phone_1"].ToString();
+                    altPhone2TextBox.Text = reader["alt_phone_2"].ToString();
+                    emailTextBox.Text = reader["email"].ToString();
+                    referredByTextBox.Text = reader["referred_by"].ToString();
+                    notesTextBox.Text = reader["notes"].ToString();
+                    pdfLinkLabel.Text = reader["attached_file"].ToString();
+                    estatePlannerCheckBox.Checked = reader["client_num"].ToString() == "T" ? true : false;
+                }
+                
+
+            }
+            catch(Exception exc)
+            {
+                MessageBox.Show(exc.Message + " - The file for this client wasn't found in the database, or the database is missing. Please contact an administrator.");
+            }
+
+            db_connect.Close();
+            clientFirstTextBox.Focus();
+
         }
 
         private void EditClientForm_Load(object sender, EventArgs e)
         {
-            //
+            
             if(pdfLinkLabel.Text == "No file selected...")
             {
                 pdfLinkLabel.LinkColor = Color.Black;
@@ -35,6 +98,11 @@ namespace EstateMastersInstitute
             {
                 pdfLinkLabel.LinkColor = Color.Blue;
             }
+
+            creationDateLabel.Text = DateTime.Today.ToString("yyyy-MM-dd");
+            modifiedDateLabel.Text = DateTime.Today.ToString("yyyy-MM-dd");
+
+            clientFirstTextBox.Focus();
         }
 
         /*****************************************************************
@@ -121,8 +189,8 @@ namespace EstateMastersInstitute
             }
             else if (phoneNumber.Length > 10)
             {
-                // It's a standard 10-digit number with a possible extension, format as "(###) ###-####"
-                phoneNumber = "(" + phoneNumber.Substring(0, 3) + ") " + phoneNumber.Substring(3, 3) + "-" + phoneNumber.Substring(6, 4);
+                // It's a standard 10-digit number with a possible extension, format as "(###) ###-#### x ####"
+                phoneNumber = "(" + phoneNumber.Substring(0, 3) + ") " + phoneNumber.Substring(3, 3) + "-" + phoneNumber.Substring(6, 4) + " x " + phoneNumber.Substring(10,phoneNumber.Length - 10);
             }
 
             return phoneNumber;
@@ -146,15 +214,15 @@ namespace EstateMastersInstitute
             // USER WANTS TO OVERWRITE THIS INFORMATION
 
             // Normalize primary phone input data
-            if (phoneTextbox.Text != "")
+            if (phoneTextBox.Text != "")
             {
                 //Normalize the Primary phone #
-                phoneTextbox.Text = normalizePhone(phoneTextbox.Text);
+                phoneTextBox.Text = normalizePhone(phoneTextBox.Text);
                 // Check to see if it was a 7, 10, or 12+ digit phone number
-                if (phoneTextbox.Text.Substring(0, 1) != "(")
+                if (phoneTextBox.Text.Substring(0, 1) != "(")
                 {
                     // If not, warn the user; if they want to continue, proceed as normal
-                    if (MessageBox.Show("The primary phone number \"+" + phoneTextbox.Text + "\" probably contains a typo. Would you like to double-check before saving?", "Phone Number Typo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("The primary phone number \"+" + phoneTextBox.Text + "\" probably contains a typo. Would you like to double-check before saving?", "Phone Number Typo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         // Exit the method so the user can fix the phone
                         return;
@@ -197,20 +265,28 @@ namespace EstateMastersInstitute
             }
 
             // Verify the input fields
-            if (!verifyInput(ClientFirstTextbox, MAX_NAME_LEN, true) ||
-               !verifyInput(clientLastTextbox, MAX_NAME_LEN, true) ||
-               !verifyInput(clientMiddleTextbox, MAX_M_I_LEN) ||
-               !verifyInput(spouseFirstTextbox, MAX_NAME_LEN) ||
-               !verifyInput(spouseLastTextbox, MAX_NAME_LEN) ||
-               !verifyInput(spouseMiddleTextbox, MAX_M_I_LEN) ||
-               !verifyInput(addressTextbox, MAX_ADDRESS_LEN, true) ||
-               !verifyInput(cityTextbox, MAX_CITY_LEN, true) ||
-               !verifyInput(countyTextbox, MAX_COUNTY_LEN, true) ||
-               !verifyInput(zipTextbox, MAX_ZIP_LEN, true) ||
+            if (!verifyInput(clientFirstTextBox, MAX_NAME_LEN, true) ||
+               !verifyInput(clientLastTextBox, MAX_NAME_LEN, true) ||
+               !verifyInput(clientMiddleTextBox, MAX_M_I_LEN) ||
+               !verifyInput(spouseFirstTextBox, MAX_NAME_LEN) ||
+               !verifyInput(spouseLastTextBox, MAX_NAME_LEN) ||
+               !verifyInput(spouseMiddleTextBox, MAX_M_I_LEN) ||
                !verifyInput(emailTextBox, MAX_EMAIL_LEN) ||
-               !verifyInput(referredByTextbox, MAX_REFERRAL_LEN))
+               !verifyInput(referredByTextBox, MAX_REFERRAL_LEN))
             {
                 return;
+            }
+
+            // If the address is unknown, the addressing fields aren't required
+            if(!addressUnknownCheckBox.Checked)
+            {
+                if(!verifyInput(addressTextBox, MAX_ADDRESS_LEN, true) ||
+               !verifyInput(cityTextBox, MAX_CITY_LEN, true) ||
+               !verifyInput(countyTextBox, MAX_COUNTY_LEN, true) ||
+               !verifyInput(zipTextBox, MAX_ZIP_LEN, true))
+                {
+                    return;
+                }
             }
 
             // Variables for working with the SQLite3 Database
@@ -218,24 +294,175 @@ namespace EstateMastersInstitute
             SQLiteCommand db_comm;
 
             // Create connection to database and open it
+            string command_text = "";
             db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
             db_connect.Open();
 
 
-
-
-
-
-
-
-
-            
-
             // Try to insert a new row in the database
-            // If the file already exists, confirm the information hasn't changed much (Same name)
-            // If not, go ahead and update the info
-            // If it has, the user is trying to overwrite a file number. Warn the user, and if they 
-            // want to continue, update the existing values with the new ones.
+            try
+            {
+                command_text = "INSERT INTO Clients(client_num, created_date, modified_date, title_1, first_name_1, middle_initial_1, last_name_1, title_2, " +
+                    "first_name_2, middle_initial_2, last_name_2, address_unknown, address, city, county, state, zip, main_phone, alt_phone_1, alt_phone_2, email, " +
+                    "referred_by, has_estate_planner, notes, attached_file) " +
+                    "VALUES(" + fileNumberTextBox.Text + ", \"" +
+                    creationDateLabel.Text + "\", \"" +
+                    (changeOccurred ? DateTime.Today.ToString("yyyy-MM-dd") : modifiedDateLabel.Text) + "\", " +
+                    "\"" + clientTitleComboBox.Text + "\"" + ", " +
+                    "\"" + clientFirstTextBox.Text + "\"" + ", " +
+                    (clientMiddleTextBox.Text == "" ? "NULL" : "\"" + clientMiddleTextBox.Text + "\"") + ", " +
+                    "\"" + clientLastTextBox.Text + "\"" + ", " +
+                    "\"" + spouseTitleComboBox.Text + "\"" + ", " +
+                    (spouseFirstTextBox.Text == "" ? "NULL" : "\"" + spouseFirstTextBox.Text + "\"") + ", " +
+                    (spouseMiddleTextBox.Text == "" ? "NULL" : "\"" + spouseMiddleTextBox.Text + "\"") + ", " +
+                    (spouseLastTextBox.Text == "" ? "NULL" : "\"" + spouseLastTextBox.Text + "\"") + ", " +
+                    (addressUnknownCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
+                    (addressTextBox.Text == "" ? "NULL" : "\"" + addressTextBox.Text + "\"") + ", " +
+                    (cityTextBox.Text == "" ? "NULL" : "\"" + cityTextBox.Text + "\"") + ", " +
+                    (countyTextBox.Text == "" ? "NULL" : "\"" + countyTextBox.Text + "\"") + ", " +
+                    (stateComboBox.Text == "" ? "NULL" : "\"" + stateComboBox.Text + "\"") + ", " +
+                    (zipTextBox.Text == "" ? "NULL" : "\"" + zipTextBox.Text + "\"") + ", " +
+                    (phoneTextBox.Text == "" ? "NULL" : "\"" + phoneTextBox.Text + "\"") + ", " +
+                    (altPhone1TextBox.Text == "" ? "NULL" : "\"" + altPhone1TextBox.Text + "\"") + ", " +
+                    (altPhone2TextBox.Text == "" ? "NULL" : "\"" + altPhone2TextBox.Text + "\"") + ", " +
+                    (emailTextBox.Text == "" ? "NULL" : "\"" + emailTextBox.Text + "\"") + ", " +
+                    (referredByTextBox.Text == "" ? "NULL" : "\"" + referredByTextBox.Text + "\"") + ", " +
+                    (estatePlannerCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
+                    (notesTextBox.Text == "" ? "NULL" : "\"" + notesTextBox.Text + "\"") + ", " +
+                    (attachedDocLink == "" ? "NULL" : "\"" + attachedDocLink + "\"") +
+                    ");";
+
+                db_comm = new SQLiteCommand(command_text, db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            // If it already exists, try to update the record
+            catch (Exception exc)
+            {
+                string client_name = "";
+                // If the client already exists, confirm the information hasn't changed much (Same name)
+                Console.WriteLine(exc.Message);
+                SQLiteDataReader reader;
+
+                try
+                {
+                    // Query the database to see what's already in the file
+                    command_text = "SELECT * FROM Clients WHERE client_num = " + fileNumberTextBox.Text + ";";
+                    db_comm = new SQLiteCommand(command_text, db_connect);
+                    reader = db_comm.ExecuteReader();
+                    
+                    while (reader.Read())
+                    {
+                        client_name = reader["first_name_1"].ToString() + " " + reader["last_name_1"].ToString();
+                    }
+                    
+                    // See if the client's name matches what's in the file number
+                    if (client_name != (clientFirstTextBox.Text + " " + clientLastTextBox.Text))
+                    {
+                        // If so, warn the user that they might be overriding the existing file.
+                        DialogResult result = MessageBox.Show("The file number above is already used for your client " + client_name + ", and continuing will overwrite the existing data, and cannot be undone. Continue?", "", MessageBoxButtons.YesNo);
+                        if(result == DialogResult.Yes)
+                        {
+                            // Save the changes and exit
+                            command_text = "UPDATE Clients\n" +
+                                "SET created_date = \"" + creationDateLabel.Text + "\", " +
+                                "modified_date = \"" + DateTime.Today.ToString("yyyy-MM-dd") + "\", " +
+                                "title_1 = \"" + clientTitleComboBox.Text + "\", " +
+                                "first_name_1 = \"" + clientFirstTextBox.Text + "\", " +
+                                "middle_initial_1 = \"" + clientMiddleTextBox.Text + "\", " +
+                                "last_name_1 = \"" + clientLastTextBox.Text + "\", " +
+                                "title_2 = \"" + spouseTitleComboBox.Text + "\", " +
+                                "first_name_2 = \"" + spouseFirstTextBox.Text + "\", " +
+                                "middle_initial_2 = \"" + spouseMiddleTextBox.Text + "\", " +
+                                "last_name_2 = \"" + spouseLastTextBox.Text + "\", " +
+                                "address_unknown = " + (addressUnknownCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
+                                "address = \"" + addressTextBox.Text + "\", " +
+                                "city = \"" + cityTextBox.Text + "\", " +
+                                "county = \"" + countyTextBox.Text + "\", " +
+                                "state = \"" + stateComboBox.Text + "\", " +
+                                "zip = \"" + zipTextBox.Text + "\", " +
+                                "main_phone = \"" + phoneTextBox.Text + "\", " +
+                                "alt_phone_1 = \"" + altPhone1TextBox.Text + "\", " +
+                                "alt_phone_2 = \"" + altPhone2TextBox.Text + "\", " +
+                                "email = \"" + emailTextBox.Text + "\", " +
+                                "referred_by = \"" + referredByTextBox.Text + "\", " +
+                                "has_estate_planner = \"" + (estatePlannerCheckBox.Checked ? "T" : "F") + "\", " +
+                                "notes = \"" + notesTextBox.Text + "\", " +
+                                "attached_file = \"" + attachedDocLink + "\"\n" +
+                                "WHERE client_num = " + fileNumberTextBox.Text + ";";
+                            db_comm = new SQLiteCommand(command_text, db_connect);
+                            db_comm.ExecuteNonQuery();
+
+                            MessageBox.Show("File number " + fileNumberTextBox.Text + " is now associated with " + client_name);
+                            db_connect.Close();
+                            this.Close();
+                        }
+                        
+                        // Do nothing so the user can review their changes
+                    }
+                    // The client's name is the same, but something else has changed. Confirm changes.
+                    else if(changeOccurred)
+                    {
+
+                        DialogResult result;
+                        // Make sure the user wants to save the changes or discard, and whether to close or not.
+                        // ("Yes" = save & close, "No" = discard & close, "Cancel" = discard only.
+                        result = MessageBox.Show("Would you like to save your changes?", "Update Information", MessageBoxButtons.YesNoCancel);
+                        if(result == DialogResult.Yes)
+                        {
+                            // Save the changes and exit
+                            command_text = "UPDATE Clients\n" +
+                                "SET created_date = \"" + creationDateLabel.Text + "\", " +
+                                "modified_date = \"" + DateTime.Today.ToString("yyyy-MM-dd") + "\", " +
+                                "title_1 = \"" + clientTitleComboBox.Text + "\", " +
+                                "first_name_1 = \"" + clientFirstTextBox.Text + "\", " +
+                                "middle_initial_1 = \"" + clientMiddleTextBox.Text + "\", " +
+                                "last_name_1 = \"" + clientLastTextBox.Text + "\", " +
+                                "title_2 = \"" + spouseTitleComboBox.Text + "\", " +
+                                "first_name_2 = \"" + spouseFirstTextBox.Text + "\", " +
+                                "middle_initial_2 = \"" + spouseMiddleTextBox.Text + "\", " +
+                                "last_name_2 = \"" + spouseLastTextBox.Text + "\", " +
+                                "address_unknown = " + (addressUnknownCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
+                                "address = \"" + addressTextBox.Text + "\", " +
+                                "city = \"" + cityTextBox.Text + "\", " +
+                                "county = \"" + countyTextBox.Text + "\", " +
+                                "state = \"" + stateComboBox.Text + "\", " +
+                                "zip = \"" + zipTextBox.Text + "\", " +
+                                "main_phone = \"" + phoneTextBox.Text + "\", " +
+                                "alt_phone_1 = \"" + altPhone1TextBox.Text + "\", " +
+                                "alt_phone_2 = \"" + altPhone2TextBox.Text + "\", " +
+                                "email = \"" + emailTextBox.Text + "\", " +
+                                "referred_by = \"" + referredByTextBox.Text + "\", " +
+                                "has_estate_planner = \"" + (estatePlannerCheckBox.Checked ? "T" : "F") + "\", " +
+                                "notes = \"" + notesTextBox.Text + "\", " +
+                                "attached_file = \"" + attachedDocLink + "\"\n" +
+                                "WHERE client_num = " + fileNumberTextBox.Text + ";";
+                            db_comm = new SQLiteCommand(command_text, db_connect);
+                            db_comm.ExecuteNonQuery();
+
+                            MessageBox.Show("The file for " + client_name + " (#" + fileNumberTextBox.Text + ") has been updated!");
+                            db_connect.Close();
+                            this.Close();
+                        }
+                        else if(result == DialogResult.No)
+                        {
+                            // Abandon changes and close the edit form
+                            MessageBox.Show("Changes abandoned.");
+                            db_connect.Close();
+                            this.Close();
+                        }
+                        else
+                        {
+                            // Do nothing, so the user can review their changes before saving/aborting
+                        }
+                    }
+                }
+                catch (Exception exc2)
+                {
+                    Console.WriteLine(exc2.Message);
+                }
+            }
+            
+            db_connect.Close();
             this.Close();
         }
 
@@ -265,7 +492,7 @@ namespace EstateMastersInstitute
                     // from the one they selected (So they can click "Cancel" OR "OK"
                     //  to undo the file selection in case they clicked "Browse"
                     // by accident).
-                    if (MessageBox.Show("Change the attached file for " + clientTitleCombobox.Text + ". " + clientLastTextbox.Text + "?", "Change Attachment", MessageBoxButtons.YesNo) == DialogResult.No)
+                    if (MessageBox.Show("Change the attached file for " + clientTitleComboBox.Text + ". " + clientLastTextBox.Text + "?", "Change Attachment", MessageBoxButtons.YesNo) == DialogResult.No)
                     {
                         changeFile = false;
                     }
@@ -310,6 +537,7 @@ namespace EstateMastersInstitute
             // Variables for working with the SQLite3 Database
             SQLiteConnection db_connect;
             SQLiteCommand db_comm;
+            String command_text;
 
             // Create connection to database and open it
             db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
@@ -318,64 +546,140 @@ namespace EstateMastersInstitute
             // Drop tables
             try
             {
-                db_comm = new SQLiteCommand("DROP TABLE Clients;", db_connect);
+                db_comm = new SQLiteCommand("DROP TABLE IF EXISTS Clients;", db_connect);
                 db_comm.ExecuteNonQuery();
             }
             catch (Exception exc)
             {
                 // Write error message to console, to show that something happened/was attempted.
-                Console.WriteLine(exc.Message);
+                Console.WriteLine("Could not drop table: " + exc.Message);
             }
 
             try
             {
-                db_comm = new SQLiteCommand("DROP TABLE Invoices;", db_connect);
+                db_comm = new SQLiteCommand("DROP TABLE IF EXISTS Invoices;", db_connect);
                 db_comm.ExecuteNonQuery();
             }
             catch (Exception exc)
             {
                 // Write error message to console, to show that something happened/was attempted.
-                Console.WriteLine(exc.Message);
+                Console.WriteLine("Could not drop table: " + exc.Message);
             }
 
             try
             {
-                db_comm = new SQLiteCommand("DROP TABLE Services;", db_connect);
+                db_comm = new SQLiteCommand("DROP TABLE IF EXISTS Services;", db_connect);
                 db_comm.ExecuteNonQuery();
             }
             catch (Exception exc)
             {
                 // Write error message to console, to show that something happened/was attempted.
-                Console.WriteLine(exc.Message);
+                Console.WriteLine("Could not drop table: " + exc.Message);
             }
 
             try
             {
-                db_comm = new SQLiteCommand("DROP TABLE InvoiceServices;", db_connect);
+                db_comm = new SQLiteCommand("DROP TABLE IF EXISTS InvoiceServices;", db_connect);
                 db_comm.ExecuteNonQuery();
             }
             catch (Exception exc)
             {
                 // Write error message to console, to show that something happened/was attempted.
-                Console.WriteLine(exc.Message);
+                Console.WriteLine("Could not drop table: " + exc.Message);
             }
 
             // Create the tables
             try
             {
-                db_comm = new SQLiteCommand("CREATE TABLE Clients;", db_connect);
+                command_text = "CREATE TABLE Clients(client_num INT PRIMARY KEY, " +
+                    "created_date DATE, " +
+                    "modified_date DATE, " +
+                    "title_1 VARCHAR(4), " +
+                    "first_name_1 VARCHAR(35), " +
+                    "middle_initial_1 CHAR(1), " +
+                    "last_name_1 VARCHAR(35), " +
+                    "title_2 VARCHAR(3), " +
+                    "first_name_2 VARCHAR(35), " +
+                    "middle_initial_2 CHAR(1), " +
+                    "last_name_2 VARCHAR(35), " +
+                    "address_unknown CHAR(1), " +
+                    "address VARCHAR(35), " +
+                    "city VARCHAR(20), " +
+                    "county VARCHAR(15), " +
+                    "state CHAR(2), " +
+                    "zip CHAR(5), " +
+                    "main_phone CHAR(23), " +
+                    "alt_phone_1 CHAR(23), " +
+                    "alt_phone_2 CHAR(23), " +
+                    "email VARCHAR(40), " +
+                    "referred_by VARCHAR(70), " +
+                    "has_estate_planner CHAR(1), " +
+                    "notes TEXT, " +
+                    "attached_file VARCHAR(255)" +
+                    ");";
+
+                db_comm = new SQLiteCommand(command_text, db_connect);
                 db_comm.ExecuteNonQuery();
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message);
+                Console.WriteLine("Could not create Clients table: " + exc.Message);
             }
 
 
+            try
+            {
+                command_text = "CREATE TABLE Invoices(invoice_num INT PRIMARY KEY, " +
+                    "invoice_date DATE, " +
+                    "file_num INT, " +
+                    "due_date DATE, " +
+                    "subtotal MONEY, " +
+                    "paid_amt MONEY, " +
+                    "\nFOREIGN KEY(file_num) REFERENCES Clients(client_num)" +
+                    ")";
 
+                db_comm = new SQLiteCommand(command_text, db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Could not create Invoices table: " + exc.Message);
+            }
 
+            try
+            {
+                command_text = "CREATE TABLE Services(service_name TINYTEXT PRIMARY KEY, " +
+                    "service_detail TINYTEXT, " +
+                    "standard_price MONEY" +
+                    ")";
 
+                db_comm = new SQLiteCommand(command_text, db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Could not create Services table: " + exc.Message);
+            }
 
+            try
+            {
+                command_text = "CREATE TABLE InvoiceServices(INVOICEinvoice_num INT, " +
+                    "SERVICEservice_name TINYTEXT, " +
+                    "service_detail TINYTEXT, " +
+                    "actual_price MONEY, " +
+                    "\nFOREIGN KEY(INVOICEinvoice_num) REFERENCES Invoices(invoice_num)," +
+                    "\nFOREIGN KEY(SERVICEservice_name) REFERENCES Services(service_name)" +
+                    ")";
+
+                db_comm = new SQLiteCommand(command_text, db_connect);
+                db_comm.ExecuteNonQuery();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Could not create InvoiceServices table: " + exc.Message);
+            }
+
+            
             //Close the database connection
             db_connect.Close();
         }
@@ -425,72 +729,77 @@ namespace EstateMastersInstitute
          *********************************************************************
          *********************************************************************
          *********************************************************************/
-        private void fileNumberTextbox_TextChanged(object sender, EventArgs e)
+        private void fileNumberTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void clientTitleCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void clientTitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void ClientFirstTextbox_TextChanged(object sender, EventArgs e)
+        private void clientFirstTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void clientMiddleTextbox_TextChanged(object sender, EventArgs e)
+        private void clientMiddleTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void clientLastTextbox_TextChanged(object sender, EventArgs e)
+        private void clientLastTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void spouseTitleCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        private void spouseTitleComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void spouseFirstTextbox_TextChanged(object sender, EventArgs e)
+        private void spouseFirstTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(spouseFirstTextBox.Text != "" && clientLastTextBox.Text != "")
+            {
+                spouseLastTextBox.Text = clientLastTextBox.Text;
+            }
+
+            changeOccurred = true;
+        }
+
+        private void spouseMiddleTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void spouseMiddleTextbox_TextChanged(object sender, EventArgs e)
+        private void spouseLastTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void spouseLastTextbox_TextChanged(object sender, EventArgs e)
+        private void addressUnknownCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void addressUnknownCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void addressTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void addressTextbox_TextChanged(object sender, EventArgs e)
+        private void zipTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void zipTextbox_TextChanged(object sender, EventArgs e)
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void cityTextbox_TextChanged(object sender, EventArgs e)
-        {
-            changeOccurred = true;
-        }
-
-        private void countyTextbox_TextChanged(object sender, EventArgs e)
+        private void countyTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
@@ -500,7 +809,7 @@ namespace EstateMastersInstitute
             changeOccurred = true;
         }
 
-        private void phoneTextbox_TextChanged(object sender, EventArgs e)
+        private void phoneTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
@@ -520,17 +829,17 @@ namespace EstateMastersInstitute
             changeOccurred = true;
         }
 
-        private void notesTextbox_TextChanged(object sender, EventArgs e)
+        private void notesTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void referredByTextbox_TextChanged(object sender, EventArgs e)
+        private void referredByTextBox_TextChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
 
-        private void estatePlannerCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void estatePlannerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             changeOccurred = true;
         }
