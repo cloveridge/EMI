@@ -22,8 +22,6 @@ namespace EstateMastersInstitute
         public EditClientForm()
         {
             InitializeComponent();
-            clientFirstTextBox.Focus();
-
         }
 
         public EditClientForm(string file_num)
@@ -222,7 +220,7 @@ namespace EstateMastersInstitute
                 if (phoneTextBox.Text.Substring(0, 1) != "(")
                 {
                     // If not, warn the user; if they want to continue, proceed as normal
-                    if (MessageBox.Show("The primary phone number \"+" + phoneTextBox.Text + "\" probably contains a typo. Would you like to double-check before saving?", "Phone Number Typo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("The primary phone number \"" + phoneTextBox.Text + "\" probably contains a typo. Would you like to double-check before saving?", "Phone Number Typo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         // Exit the method so the user can fix the phone
                         return;
@@ -310,26 +308,26 @@ namespace EstateMastersInstitute
                     (changeOccurred ? DateTime.Today.ToString("yyyy-MM-dd") : modifiedDateLabel.Text) + "\", " +
                     "\"" + clientTitleComboBox.Text + "\"" + ", " +
                     "\"" + clientFirstTextBox.Text + "\"" + ", " +
-                    (clientMiddleTextBox.Text == "" ? "NULL" : "\"" + clientMiddleTextBox.Text + "\"") + ", " +
+                    (clientMiddleTextBox.Text == "" ? "\"\"" : "\"" + clientMiddleTextBox.Text + "\"") + ", " +
                     "\"" + clientLastTextBox.Text + "\"" + ", " +
                     "\"" + spouseTitleComboBox.Text + "\"" + ", " +
-                    (spouseFirstTextBox.Text == "" ? "NULL" : "\"" + spouseFirstTextBox.Text + "\"") + ", " +
-                    (spouseMiddleTextBox.Text == "" ? "NULL" : "\"" + spouseMiddleTextBox.Text + "\"") + ", " +
-                    (spouseLastTextBox.Text == "" ? "NULL" : "\"" + spouseLastTextBox.Text + "\"") + ", " +
+                    (spouseFirstTextBox.Text == "" ? "\"\"" : "\"" + spouseFirstTextBox.Text + "\"") + ", " +
+                    (spouseMiddleTextBox.Text == "" ? "\"\"" : "\"" + spouseMiddleTextBox.Text + "\"") + ", " +
+                    (spouseLastTextBox.Text == "" ? "\"\"" : "\"" + spouseLastTextBox.Text + "\"") + ", " +
                     (addressUnknownCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
-                    (addressTextBox.Text == "" ? "NULL" : "\"" + addressTextBox.Text + "\"") + ", " +
-                    (cityTextBox.Text == "" ? "NULL" : "\"" + cityTextBox.Text + "\"") + ", " +
-                    (countyTextBox.Text == "" ? "NULL" : "\"" + countyTextBox.Text + "\"") + ", " +
-                    (stateComboBox.Text == "" ? "NULL" : "\"" + stateComboBox.Text + "\"") + ", " +
-                    (zipTextBox.Text == "" ? "NULL" : "\"" + zipTextBox.Text + "\"") + ", " +
-                    (phoneTextBox.Text == "" ? "NULL" : "\"" + phoneTextBox.Text + "\"") + ", " +
-                    (altPhone1TextBox.Text == "" ? "NULL" : "\"" + altPhone1TextBox.Text + "\"") + ", " +
-                    (altPhone2TextBox.Text == "" ? "NULL" : "\"" + altPhone2TextBox.Text + "\"") + ", " +
-                    (emailTextBox.Text == "" ? "NULL" : "\"" + emailTextBox.Text + "\"") + ", " +
-                    (referredByTextBox.Text == "" ? "NULL" : "\"" + referredByTextBox.Text + "\"") + ", " +
+                    (addressTextBox.Text == "" ? "\"\"" : "\"" + addressTextBox.Text + "\"") + ", " +
+                    (cityTextBox.Text == "" ? "\"\"" : "\"" + cityTextBox.Text + "\"") + ", " +
+                    (countyTextBox.Text == "" ? "\"\"" : "\"" + countyTextBox.Text + "\"") + ", " +
+                    (stateComboBox.Text == "" ? "\"\"" : "\"" + stateComboBox.Text + "\"") + ", " +
+                    (zipTextBox.Text == "" ? "\"\"" : "\"" + zipTextBox.Text + "\"") + ", " +
+                    (phoneTextBox.Text == "" ? "\"\"" : "\"" + phoneTextBox.Text + "\"") + ", " +
+                    (altPhone1TextBox.Text == "" ? "\"\"" : "\"" + altPhone1TextBox.Text + "\"") + ", " +
+                    (altPhone2TextBox.Text == "" ? "\"\"" : "\"" + altPhone2TextBox.Text + "\"") + ", " +
+                    (emailTextBox.Text == "" ? "\"\"" : "\"" + emailTextBox.Text + "\"") + ", " +
+                    (referredByTextBox.Text == "" ? "\"\"" : "\"" + referredByTextBox.Text + "\"") + ", " +
                     (estatePlannerCheckBox.Checked ? "\"T\"" : "\"F\"") + ", " +
-                    (notesTextBox.Text == "" ? "NULL" : "\"" + notesTextBox.Text + "\"") + ", " +
-                    (attachedDocLink == "" ? "NULL" : "\"" + attachedDocLink + "\"") +
+                    (notesTextBox.Text == "" ? "\"\"" : "\"" + notesTextBox.Text + "\"") + ", " +
+                    (attachedDocLink == "" ? "\"\"" : "\"" + attachedDocLink + "\"") +
                     ");";
 
                 db_comm = new SQLiteCommand(command_text, db_connect);
@@ -501,8 +499,14 @@ namespace EstateMastersInstitute
                 // Go ahead and change the file
                 if (changeFile)
                 {
+                    // Copy the file to the Local folder
+                    System.IO.File.Copy(attachFileDialog.FileName, "Local\\" + attachFileDialog.SafeFileName + "." + attachFileDialog.FileName.Substring(attachFileDialog.FileName.IndexOf(".") + 1));
+
+                    // Display plain file name on the form
                     pdfLinkLabel.Text = attachFileDialog.SafeFileName;
-                    attachedDocLink = attachFileDialog.FileName;
+
+                    // Link to the Local file
+                    attachedDocLink = "Local\\" + attachFileDialog.SafeFileName + "." + attachFileDialog.FileName.Substring(attachFileDialog.FileName.IndexOf(".") + 1);
                 }
             }
 
@@ -519,6 +523,73 @@ namespace EstateMastersInstitute
         private void browseButton_Click(object sender, EventArgs e)
         {
             browseForFile();
+        }
+
+        private void phoneTextBox_Leave(object sender, EventArgs e)
+        {
+            // Normalize primary phone input data
+            if (phoneTextBox.Text != "")
+            {
+                //Normalize the Primary phone #
+                phoneTextBox.Text = normalizePhone(phoneTextBox.Text);
+                // Check to see if it was a 7, 10, or 12+ digit phone number
+                if (phoneTextBox.Text.Substring(0, 1) != "(")
+                {
+                    // If not, // Turn the text red
+                    phoneTextBox.ForeColor = Color.Red;
+
+                }
+            }
+        }
+
+        private void altPhone1TextBox_Leave(object sender, EventArgs e)
+        {
+            // Normalize primary phone input data
+            if (altPhone1TextBox.Text != "")
+            {
+                //Normalize the Primary phone #
+                altPhone1TextBox.Text = normalizePhone(altPhone1TextBox.Text);
+                // Check to see if it was a 7, 10, or 12+ digit phone number
+                if (altPhone1TextBox.Text.Substring(0, 1) != "(")
+                {
+                    // If not, turn the text red
+                    altPhone1TextBox.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void altPhone2TextBox_Leave(object sender, EventArgs e)
+        {
+            // Normalize primary phone input data
+            if (altPhone2TextBox.Text != "")
+            {
+                //Normalize the Primary phone #
+                altPhone2TextBox.Text = normalizePhone(altPhone2TextBox.Text);
+                // Check to see if it was a 7, 10, or 12+ digit phone number
+                if (altPhone2TextBox.Text.Substring(0, 1) != "(")
+                {
+                    // If not, turn the text red
+                    altPhone2TextBox.ForeColor = Color.Red;
+                }
+            }
+        }
+
+        private void phoneTextBox_Enter(object sender, EventArgs e)
+        {
+            // Turn the text black
+            phoneTextBox.ForeColor = Color.Black;
+        }
+
+        private void altPhone1TextBox_Enter(object sender, EventArgs e)
+        {
+            // Turn the text black
+            altPhone1TextBox.ForeColor = Color.Black;
+        }
+
+        private void altPhone2TextBox_Enter(object sender, EventArgs e)
+        {
+            // Turn the text black
+            altPhone2TextBox.ForeColor = Color.Black;
         }
 
 
@@ -625,7 +696,6 @@ namespace EstateMastersInstitute
             {
                 Console.WriteLine("Could not create Clients table: " + exc.Message);
             }
-
 
             try
             {
@@ -761,8 +831,9 @@ namespace EstateMastersInstitute
 
         private void spouseFirstTextBox_TextChanged(object sender, EventArgs e)
         {
-            if(spouseFirstTextBox.Text != "" && clientLastTextBox.Text != "")
+            if(spouseFirstTextBox.Text != "" && clientLastTextBox.Text != "" && spouseTitleComboBox.Text == "Mrs." &&  spouseLastTextBox.Text == "")
             {
+                // Change the spouse's name to match the client's
                 spouseLastTextBox.Text = clientLastTextBox.Text;
             }
 
@@ -781,6 +852,12 @@ namespace EstateMastersInstitute
 
         private void addressUnknownCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            addressTextBox.Enabled = !addressUnknownCheckBox.Checked;
+            zipTextBox.Enabled = !addressUnknownCheckBox.Checked;
+            cityTextBox.Enabled = !addressUnknownCheckBox.Checked;
+            stateComboBox.Enabled = !addressUnknownCheckBox.Checked;
+            countyTextBox.Enabled = !addressUnknownCheckBox.Checked;
+            
             changeOccurred = true;
         }
 

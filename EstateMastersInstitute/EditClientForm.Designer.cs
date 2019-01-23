@@ -85,7 +85,6 @@
             this.attachFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.browseButton = new System.Windows.Forms.Button();
             this.saveAndCloseButton = new System.Windows.Forms.Button();
-            this.createTablesButton = new System.Windows.Forms.Button();
             this.fileNumberTextBox = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.estatePlannerCheckBox = new System.Windows.Forms.CheckBox();
@@ -161,6 +160,7 @@
             this.clientTitleComboBox.Name = "clientTitleComboBox";
             this.clientTitleComboBox.Size = new System.Drawing.Size(55, 26);
             this.clientTitleComboBox.TabIndex = 26;
+            this.clientTitleComboBox.TabStop = false;
             this.clientTitleComboBox.Text = "Mr.";
             this.clientTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.clientTitleComboBox_SelectedIndexChanged);
             // 
@@ -176,6 +176,7 @@
             this.spouseTitleComboBox.Name = "spouseTitleComboBox";
             this.spouseTitleComboBox.Size = new System.Drawing.Size(55, 26);
             this.spouseTitleComboBox.TabIndex = 27;
+            this.spouseTitleComboBox.TabStop = false;
             this.spouseTitleComboBox.Text = "Mrs.";
             this.spouseTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.spouseTitleComboBox_SelectedIndexChanged);
             // 
@@ -212,7 +213,7 @@
             this.groupBox1.Location = new System.Drawing.Point(337, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(532, 90);
-            this.groupBox1.TabIndex = 28;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Client Info";
             // 
@@ -537,6 +538,8 @@
             this.phoneTextBox.Size = new System.Drawing.Size(196, 20);
             this.phoneTextBox.TabIndex = 12;
             this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
+            this.phoneTextBox.Enter += new System.EventHandler(this.phoneTextBox_Enter);
+            this.phoneTextBox.Leave += new System.EventHandler(this.phoneTextBox_Leave);
             // 
             // label15
             // 
@@ -556,6 +559,8 @@
             this.altPhone1TextBox.Size = new System.Drawing.Size(196, 20);
             this.altPhone1TextBox.TabIndex = 13;
             this.altPhone1TextBox.TextChanged += new System.EventHandler(this.altPhone1TextBox_TextChanged);
+            this.altPhone1TextBox.Enter += new System.EventHandler(this.altPhone1TextBox_Enter);
+            this.altPhone1TextBox.Leave += new System.EventHandler(this.altPhone1TextBox_Leave);
             // 
             // label16
             // 
@@ -575,6 +580,8 @@
             this.altPhone2TextBox.Size = new System.Drawing.Size(196, 20);
             this.altPhone2TextBox.TabIndex = 14;
             this.altPhone2TextBox.TextChanged += new System.EventHandler(this.altPhone2TextBox_TextChanged);
+            this.altPhone2TextBox.Enter += new System.EventHandler(this.altPhone2TextBox_Enter);
+            this.altPhone2TextBox.Leave += new System.EventHandler(this.altPhone2TextBox_Leave);
             // 
             // label17
             // 
@@ -653,7 +660,7 @@
             this.contactGroupBox.Location = new System.Drawing.Point(32, 192);
             this.contactGroupBox.Name = "contactGroupBox";
             this.contactGroupBox.Size = new System.Drawing.Size(522, 277);
-            this.contactGroupBox.TabIndex = 47;
+            this.contactGroupBox.TabIndex = 2;
             this.contactGroupBox.TabStop = false;
             this.contactGroupBox.Text = "Contact Info";
             // 
@@ -718,6 +725,8 @@
             // 
             // notesTextBox
             // 
+            this.notesTextBox.AcceptsReturn = true;
+            this.notesTextBox.AcceptsTab = true;
             this.notesTextBox.Location = new System.Drawing.Point(32, 512);
             this.notesTextBox.Multiline = true;
             this.notesTextBox.Name = "notesTextBox";
@@ -783,17 +792,6 @@
             this.saveAndCloseButton.UseVisualStyleBackColor = true;
             this.saveAndCloseButton.Click += new System.EventHandler(this.saveAndCloseButton_Click);
             // 
-            // createTablesButton
-            // 
-            this.createTablesButton.Location = new System.Drawing.Point(712, 292);
-            this.createTablesButton.Name = "createTablesButton";
-            this.createTablesButton.Size = new System.Drawing.Size(128, 43);
-            this.createTablesButton.TabIndex = 56;
-            this.createTablesButton.TabStop = false;
-            this.createTablesButton.Text = "Create Tables";
-            this.createTablesButton.UseVisualStyleBackColor = true;
-            this.createTablesButton.Click += new System.EventHandler(this.createTablesButton_Click);
-            // 
             // fileNumberTextBox
             // 
             this.fileNumberTextBox.Location = new System.Drawing.Point(133, 56);
@@ -801,7 +799,6 @@
             this.fileNumberTextBox.Name = "fileNumberTextBox";
             this.fileNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.fileNumberTextBox.TabIndex = 0;
-            this.fileNumberTextBox.TabStop = false;
             this.fileNumberTextBox.TextChanged += new System.EventHandler(this.fileNumberTextBox_TextChanged);
             // 
             // label25
@@ -841,7 +838,6 @@
             this.Controls.Add(this.estatePlannerCheckBox);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.fileNumberTextBox);
-            this.Controls.Add(this.createTablesButton);
             this.Controls.Add(this.saveAndCloseButton);
             this.Controls.Add(this.browseButton);
             this.Controls.Add(this.pdfLinkLabel);
@@ -928,7 +924,6 @@
         private System.Windows.Forms.OpenFileDialog attachFileDialog;
         private System.Windows.Forms.Button browseButton;
         private System.Windows.Forms.Button saveAndCloseButton;
-        private System.Windows.Forms.Button createTablesButton;
         private System.Windows.Forms.TextBox fileNumberTextBox;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label22;
