@@ -42,6 +42,10 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkedFileLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.zipLabel = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.hasPlannerLabel = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.referredByLabel = new System.Windows.Forms.Label();
@@ -258,6 +262,43 @@
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quick Info";
+            // 
+            // linkedFileLinkLabel
+            // 
+            this.linkedFileLinkLabel.AutoSize = true;
+            this.linkedFileLinkLabel.Location = new System.Drawing.Point(349, 451);
+            this.linkedFileLinkLabel.Name = "linkedFileLinkLabel";
+            this.linkedFileLinkLabel.Size = new System.Drawing.Size(122, 18);
+            this.linkedFileLinkLabel.TabIndex = 14;
+            this.linkedFileLinkLabel.TabStop = true;
+            this.linkedFileLinkLabel.Text = "No file attached...";
+            this.linkedFileLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkedFileLinkLabel_LinkClicked);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(261, 451);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(82, 18);
+            this.label22.TabIndex = 49;
+            this.label22.Text = "Linked File:";
+            // 
+            // zipLabel
+            // 
+            this.zipLabel.Location = new System.Drawing.Point(806, 143);
+            this.zipLabel.Name = "zipLabel";
+            this.zipLabel.Size = new System.Drawing.Size(79, 18);
+            this.zipLabel.TabIndex = 48;
+            this.zipLabel.Text = "UT";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(768, 143);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 18);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Zip:";
             // 
             // hasPlannerLabel
             // 

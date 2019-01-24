@@ -138,7 +138,7 @@ namespace EstateMastersInstitute
                 {
                     // Save results in the listbox as FileNumber & client and spouse name.
                     // 1000 - Testy & Testee McTesterson
-                    resultsListBox.Items.Add(sql_reader["client_num"].ToString() + " - " + sql_reader["first_name_1"].ToString() + " " + 
+                    resultsListBox.Items.Add(string.Format("{0:0000}", sql_reader["client_num"].ToString()) + " - " + sql_reader["first_name_1"].ToString() + " " + 
                         (sql_reader["first_name_2"].ToString() != "" || sql_reader["last_name_2"].ToString() == sql_reader["last_name_1"].ToString() ? "& " + sql_reader["first_name_2"].ToString() + " " : "") +
                         sql_reader["last_name_1"].ToString());
                 }
@@ -185,8 +185,11 @@ namespace EstateMastersInstitute
         }
 
         /*****************************************************************
-         * Event Handler for cancelButton
-         * Description: Closes the form
+
+         * Event Handler for resultsListBox
+         * Description: When the user selects an item from the list, runs
+         *              a SQL query to pull the data into the preview
+
          * Param sender: An unused object that sends the event
          * Param e: Unused EventArgs sent to the event
          * Returns: None
@@ -197,6 +200,7 @@ namespace EstateMastersInstitute
             {
                 groupBox1.Enabled = true;
 
+                fillData(resultsListBox.SelectedItem.ToString().Substring(0,4));
             }
             else
             {
@@ -205,6 +209,13 @@ namespace EstateMastersInstitute
         }
 
 
+        /*****************************************************************
+         * clearData method
+         * Description: Resets the text in the summary fields
+         * Param sender: An unused object that sends the event
+         * Param e: Unused EventArgs sent to the event
+         * Returns: None
+         *****************************************************************/
         private void clearData()
         {
             // Clear all of the data from the summary area
@@ -229,11 +240,57 @@ namespace EstateMastersInstitute
         }
 
 
+        /*****************************************************************
+         * fillData method
+         * Description: When the user selects an item from the list, runs
+         *              a SQL query to pull the data into the preview
+         * Param file_num: The file number to search for
+         * Returns: None
+         *****************************************************************/
         private void fillData(string file_num)
         {
             // Run a SQL query, get the data, fill the fields
+            SQLiteConnection db_connect;
+            SQLiteCommand db_comm;
+            db_connect = new SQLiteConnection("Data Source=emi.db;Version=3;");
+            db_connect.Open();
+
+            string sql_query = "SELECT * FROM Clients WHERE client_num = " + int.Parse(file_num).ToString() + ";";
+
+            db_comm = new SQLiteCommand(sql_query, db_connect);
+            SQLiteDataReader sql_reader = db_comm.ExecuteReader();
+            while (sql_reader.Read())
+            {
+                fileNumberLabel.Text = file_num;
+                createdLabel.Text = sql_reader[""].ToString();
+                modifiedLabel.Text = sql_reader[""].ToString();
+                clientNameLabel.Text = sql_reader[""].ToString();
+                spouseNameLabel.Text = sql_reader[""].ToString();
+                addressLabel.Text = sql_reader[""].ToString();
+                cityLabel.Text = sql_reader[""].ToString();
+                countyLabel.Text = sql_reader[""].ToString();
+                stateLabel.Text = sql_reader[""].ToString();
+                zipLabel.Text = sql_reader[""].ToString();
+                phoneLabel.Text = sql_reader[""].ToString();
+                altPhone1Label.Text = sql_reader[""].ToString();
+                altPhone2Label.Text = sql_reader[""].ToString();
+                emailLabel.Text = sql_reader[""].ToString();
+                notesLabel.Text = sql_reader[""].ToString();
+                referredByLabel.Text = sql_reader[""].ToString();
+                hasPlannerLabel.Text = sql_reader[""].ToString();
+                linkedFileLinkLabel.Text = sql_reader[""].ToString();
+            }
+                
+            db_connect.Close();
         }
 
+        /*****************************************************************
+         * Event Handler for linkLabel
+         * Description: Opens the client's linked file, if exists.
+         * Param sender: An unused object that sends the event
+         * Param e: Unused EventArgs sent to the event
+         * Returns: None
+         *****************************************************************/
         private void linkedFileLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (clientFile != "")
