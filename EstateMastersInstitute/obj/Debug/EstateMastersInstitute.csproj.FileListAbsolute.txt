@@ -8,3 +8,27 @@ c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\ob
 c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.exe
 c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.pdb
 c:\users\christian\source\repos\EstateMastersInstitute\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.mainMenuForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.exe.config
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.exe
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EstateMastersInstitute.pdb
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EntityFramework.dll
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EntityFramework.SqlServer.dll
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\System.Data.SQLite.dll
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\System.Data.SQLite.EF6.dll
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\System.Data.SQLite.Linq.dll
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EntityFramework.xml
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\EntityFramework.SqlServer.xml
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\System.Data.SQLite.xml
+D:\C# Projects\EMI\EstateMastersInstitute\bin\Debug\System.Data.SQLite.dll.config
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csprojAssemblyReference.cache
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.ClientLookupForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.mainMenuForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.InvoicingForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.MailOptionsForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.EditClientForm.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.Properties.Resources.resources
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csproj.GenerateResource.cache
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csproj.CoreCompileInputs.cache
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.csproj.CopyComplete
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.exe
+D:\C# Projects\EMI\EstateMastersInstitute\obj\Debug\EstateMastersInstitute.pdb

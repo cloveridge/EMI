@@ -80,6 +80,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.label21 = new System.Windows.Forms.Label();
+            this.zipLabel = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.linkedFileLinkLabel = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -588,6 +592,43 @@
             this.label7.Size = new System.Drawing.Size(92, 18);
             this.label7.TabIndex = 15;
             this.label7.Text = "File Number:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(768, 143);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 18);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "Zip:";
+            // 
+            // zipLabel
+            // 
+            this.zipLabel.Location = new System.Drawing.Point(806, 143);
+            this.zipLabel.Name = "zipLabel";
+            this.zipLabel.Size = new System.Drawing.Size(79, 18);
+            this.zipLabel.TabIndex = 48;
+            this.zipLabel.Text = "UT";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(261, 451);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(82, 18);
+            this.label22.TabIndex = 49;
+            this.label22.Text = "Linked File:";
+            // 
+            // linkedFileLinkLabel
+            // 
+            this.linkedFileLinkLabel.AutoSize = true;
+            this.linkedFileLinkLabel.Location = new System.Drawing.Point(349, 451);
+            this.linkedFileLinkLabel.Name = "linkedFileLinkLabel";
+            this.linkedFileLinkLabel.Size = new System.Drawing.Size(122, 18);
+            this.linkedFileLinkLabel.TabIndex = 14;
+            this.linkedFileLinkLabel.TabStop = true;
+            this.linkedFileLinkLabel.Text = "No file attached...";
+            this.linkedFileLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkedFileLinkLabel_LinkClicked);
             // 
             // ClientLookupForm
             // 

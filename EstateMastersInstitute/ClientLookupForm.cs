@@ -185,9 +185,11 @@ namespace EstateMastersInstitute
         }
 
         /*****************************************************************
+
          * Event Handler for resultsListBox
          * Description: When the user selects an item from the list, runs
          *              a SQL query to pull the data into the preview
+
          * Param sender: An unused object that sends the event
          * Param e: Unused EventArgs sent to the event
          * Returns: None
@@ -197,6 +199,7 @@ namespace EstateMastersInstitute
             if(resultsListBox.SelectedIndex >= 0)
             {
                 groupBox1.Enabled = true;
+
                 fillData(resultsListBox.SelectedItem.ToString().Substring(0,4));
             }
             else
@@ -204,6 +207,7 @@ namespace EstateMastersInstitute
                 groupBox1.Enabled = false;
             }
         }
+
 
         /*****************************************************************
          * clearData method
@@ -234,6 +238,7 @@ namespace EstateMastersInstitute
             hasPlannerLabel.Text = "";
             linkedFileLinkLabel.Text = "No file attached...";
         }
+
 
         /*****************************************************************
          * fillData method
