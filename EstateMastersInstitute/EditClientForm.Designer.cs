@@ -169,6 +169,7 @@
             this.spouseTitleComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spouseTitleComboBox.FormattingEnabled = true;
             this.spouseTitleComboBox.Items.AddRange(new object[] {
+            "",
             "Mr.",
             "Mrs.",
             "Dr."});
@@ -177,7 +178,6 @@
             this.spouseTitleComboBox.Size = new System.Drawing.Size(55, 26);
             this.spouseTitleComboBox.TabIndex = 27;
             this.spouseTitleComboBox.TabStop = false;
-            this.spouseTitleComboBox.Text = "Mrs.";
             this.spouseTitleComboBox.SelectedIndexChanged += new System.EventHandler(this.spouseTitleComboBox_SelectedIndexChanged);
             // 
             // clientFirstTextBox
@@ -753,7 +753,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(132, 20);
             this.label21.TabIndex = 53;
-            this.label21.Text = "PDF Copy of File:";
+            this.label21.Text = "Attached File(s):";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pdfLinkLabel

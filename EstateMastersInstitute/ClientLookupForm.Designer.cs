@@ -42,37 +42,30 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.linkedFileLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label22 = new System.Windows.Forms.Label();
-            this.zipLabel = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.hasPlannerLabel = new System.Windows.Forms.Label();
+            this.hasPlannerLabel = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
-            this.referredByLabel = new System.Windows.Forms.Label();
+            this.referredByLabel = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.notesLabel = new System.Windows.Forms.Label();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.altPhone2Label = new System.Windows.Forms.Label();
-            this.altPhone1Label = new System.Windows.Forms.Label();
-            this.phoneLabel = new System.Windows.Forms.Label();
-            this.stateLabel = new System.Windows.Forms.Label();
-            this.countyLabel = new System.Windows.Forms.Label();
-            this.cityLabel = new System.Windows.Forms.Label();
-            this.addressLabel = new System.Windows.Forms.Label();
-            this.spouseNameLabel = new System.Windows.Forms.Label();
+            this.notesLabel = new System.Windows.Forms.TextBox();
+            this.emailLabel = new System.Windows.Forms.TextBox();
+            this.altPhone2Label = new System.Windows.Forms.TextBox();
+            this.altPhone1Label = new System.Windows.Forms.TextBox();
+            this.phoneLabel = new System.Windows.Forms.TextBox();
+            this.addressLabel = new System.Windows.Forms.TextBox();
+            this.spouseNameLabel = new System.Windows.Forms.TextBox();
             this.editClientButton = new System.Windows.Forms.Button();
-            this.clientNameLabel = new System.Windows.Forms.Label();
-            this.modifiedLabel = new System.Windows.Forms.Label();
-            this.createdLabel = new System.Windows.Forms.Label();
-            this.fileNumberLabel = new System.Windows.Forms.Label();
+            this.clientNameLabel = new System.Windows.Forms.TextBox();
+            this.modifiedLabel = new System.Windows.Forms.TextBox();
+            this.createdLabel = new System.Windows.Forms.TextBox();
+            this.fileNumberLabel = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -80,10 +73,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            this.label21 = new System.Windows.Forms.Label();
-            this.zipLabel = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.linkedFileLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.newClientButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,11 +102,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(167, 48);
+            this.label2.Location = new System.Drawing.Point(185, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 20);
+            this.label2.Size = new System.Drawing.Size(33, 20);
             this.label2.TabIndex = 2;
-            this.label2.Text = "AND/OR";
+            this.label2.Text = "OR";
             // 
             // numberSearchTextBox
             // 
@@ -174,11 +164,12 @@
             // 
             // resultsListBox
             // 
+            this.resultsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resultsListBox.FormattingEnabled = true;
+            this.resultsListBox.ItemHeight = 18;
             this.resultsListBox.Location = new System.Drawing.Point(53, 107);
-            this.resultsListBox.MultiColumn = true;
             this.resultsListBox.Name = "resultsListBox";
-            this.resultsListBox.Size = new System.Drawing.Size(768, 147);
+            this.resultsListBox.Size = new System.Drawing.Size(768, 130);
             this.resultsListBox.TabIndex = 9;
             this.resultsListBox.TabStop = false;
             this.resultsListBox.SelectedIndexChanged += new System.EventHandler(this.resultsListBox_SelectedIndexChanged);
@@ -217,10 +208,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.deleteButton);
             this.groupBox1.Controls.Add(this.linkedFileLinkLabel);
             this.groupBox1.Controls.Add(this.label22);
-            this.groupBox1.Controls.Add(this.zipLabel);
-            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.hasPlannerLabel);
             this.groupBox1.Controls.Add(this.label37);
             this.groupBox1.Controls.Add(this.referredByLabel);
@@ -230,9 +220,6 @@
             this.groupBox1.Controls.Add(this.altPhone2Label);
             this.groupBox1.Controls.Add(this.altPhone1Label);
             this.groupBox1.Controls.Add(this.phoneLabel);
-            this.groupBox1.Controls.Add(this.stateLabel);
-            this.groupBox1.Controls.Add(this.countyLabel);
-            this.groupBox1.Controls.Add(this.cityLabel);
             this.groupBox1.Controls.Add(this.addressLabel);
             this.groupBox1.Controls.Add(this.spouseNameLabel);
             this.groupBox1.Controls.Add(this.editClientButton);
@@ -245,9 +232,6 @@
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
@@ -263,10 +247,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quick Info";
             // 
+            // deleteButton
+            // 
+            this.deleteButton.BackColor = System.Drawing.Color.LavenderBlush;
+            this.deleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(778, 435);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(107, 34);
+            this.deleteButton.TabIndex = 50;
+            this.deleteButton.Text = "Delete Client";
+            this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
             // linkedFileLinkLabel
             // 
             this.linkedFileLinkLabel.AutoSize = true;
-            this.linkedFileLinkLabel.Location = new System.Drawing.Point(349, 451);
+            this.linkedFileLinkLabel.Location = new System.Drawing.Point(357, 451);
             this.linkedFileLinkLabel.Name = "linkedFileLinkLabel";
             this.linkedFileLinkLabel.Size = new System.Drawing.Size(122, 18);
             this.linkedFileLinkLabel.TabIndex = 14;
@@ -279,33 +275,18 @@
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(261, 451);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 18);
+            this.label22.Size = new System.Drawing.Size(100, 18);
             this.label22.TabIndex = 49;
-            this.label22.Text = "Linked File:";
-            // 
-            // zipLabel
-            // 
-            this.zipLabel.Location = new System.Drawing.Point(806, 143);
-            this.zipLabel.Name = "zipLabel";
-            this.zipLabel.Size = new System.Drawing.Size(79, 18);
-            this.zipLabel.TabIndex = 48;
-            this.zipLabel.Text = "UT";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(768, 143);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(32, 18);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Zip:";
+            this.label22.Text = "Linked File(s):";
             // 
             // hasPlannerLabel
             // 
-            this.hasPlannerLabel.AutoSize = true;
+            this.hasPlannerLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.hasPlannerLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hasPlannerLabel.Location = new System.Drawing.Point(126, 328);
             this.hasPlannerLabel.Name = "hasPlannerLabel";
-            this.hasPlannerLabel.Size = new System.Drawing.Size(54, 18);
+            this.hasPlannerLabel.ReadOnly = true;
+            this.hasPlannerLabel.Size = new System.Drawing.Size(54, 17);
             this.hasPlannerLabel.TabIndex = 46;
             this.hasPlannerLabel.Text = "label38";
             // 
@@ -320,9 +301,12 @@
             // 
             // referredByLabel
             // 
-            this.referredByLabel.Location = new System.Drawing.Point(126, 298);
+            this.referredByLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.referredByLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.referredByLabel.Location = new System.Drawing.Point(126, 299);
             this.referredByLabel.Name = "referredByLabel";
-            this.referredByLabel.Size = new System.Drawing.Size(175, 18);
+            this.referredByLabel.ReadOnly = true;
+            this.referredByLabel.Size = new System.Drawing.Size(175, 17);
             this.referredByLabel.TabIndex = 44;
             this.referredByLabel.Text = "label35";
             // 
@@ -337,85 +321,85 @@
             // 
             // notesLabel
             // 
+            this.notesLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.notesLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.notesLabel.Location = new System.Drawing.Point(316, 224);
+            this.notesLabel.Location = new System.Drawing.Point(316, 244);
+            this.notesLabel.Multiline = true;
             this.notesLabel.Name = "notesLabel";
-            this.notesLabel.Size = new System.Drawing.Size(569, 200);
+            this.notesLabel.ReadOnly = true;
+            this.notesLabel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.notesLabel.Size = new System.Drawing.Size(569, 180);
             this.notesLabel.TabIndex = 42;
             this.notesLabel.Text = "label34";
             // 
             // emailLabel
             // 
+            this.emailLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.emailLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.emailLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.Location = new System.Drawing.Point(316, 197);
+            this.emailLabel.Location = new System.Drawing.Point(366, 197);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(569, 18);
+            this.emailLabel.ReadOnly = true;
+            this.emailLabel.Size = new System.Drawing.Size(290, 19);
             this.emailLabel.TabIndex = 41;
             this.emailLabel.Text = "label33";
             // 
             // altPhone2Label
             // 
-            this.altPhone2Label.Location = new System.Drawing.Point(126, 251);
+            this.altPhone2Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.altPhone2Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.altPhone2Label.Location = new System.Drawing.Point(126, 271);
             this.altPhone2Label.Name = "altPhone2Label";
-            this.altPhone2Label.Size = new System.Drawing.Size(132, 18);
+            this.altPhone2Label.ReadOnly = true;
+            this.altPhone2Label.Size = new System.Drawing.Size(132, 17);
             this.altPhone2Label.TabIndex = 40;
             this.altPhone2Label.Text = "label32";
             // 
             // altPhone1Label
             // 
-            this.altPhone1Label.Location = new System.Drawing.Point(126, 224);
+            this.altPhone1Label.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.altPhone1Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.altPhone1Label.Location = new System.Drawing.Point(126, 244);
             this.altPhone1Label.Name = "altPhone1Label";
-            this.altPhone1Label.Size = new System.Drawing.Size(132, 18);
+            this.altPhone1Label.ReadOnly = true;
+            this.altPhone1Label.Size = new System.Drawing.Size(132, 17);
             this.altPhone1Label.TabIndex = 39;
             this.altPhone1Label.Text = "label31";
             // 
             // phoneLabel
             // 
+            this.phoneLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.phoneLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.phoneLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.phoneLabel.Location = new System.Drawing.Point(126, 197);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(132, 18);
+            this.phoneLabel.ReadOnly = true;
+            this.phoneLabel.Size = new System.Drawing.Size(132, 19);
             this.phoneLabel.TabIndex = 38;
             this.phoneLabel.Text = "label30";
             // 
-            // stateLabel
-            // 
-            this.stateLabel.Location = new System.Drawing.Point(732, 143);
-            this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(36, 18);
-            this.stateLabel.TabIndex = 37;
-            this.stateLabel.Text = "UT";
-            // 
-            // countyLabel
-            // 
-            this.countyLabel.Location = new System.Drawing.Point(575, 143);
-            this.countyLabel.Name = "countyLabel";
-            this.countyLabel.Size = new System.Drawing.Size(94, 18);
-            this.countyLabel.TabIndex = 36;
-            this.countyLabel.Text = "label28";
-            // 
-            // cityLabel
-            // 
-            this.cityLabel.Location = new System.Drawing.Point(373, 143);
-            this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(120, 18);
-            this.cityLabel.TabIndex = 35;
-            this.cityLabel.Text = "label27";
-            // 
             // addressLabel
             // 
-            this.addressLabel.Location = new System.Drawing.Point(126, 143);
+            this.addressLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.addressLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.addressLabel.Location = new System.Drawing.Point(126, 124);
+            this.addressLabel.Multiline = true;
             this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(197, 18);
+            this.addressLabel.ReadOnly = true;
+            this.addressLabel.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.addressLabel.Size = new System.Drawing.Size(175, 61);
             this.addressLabel.TabIndex = 34;
             this.addressLabel.Text = "label26";
             // 
             // spouseNameLabel
             // 
+            this.spouseNameLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.spouseNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.spouseNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.spouseNameLabel.Location = new System.Drawing.Point(415, 59);
             this.spouseNameLabel.Name = "spouseNameLabel";
-            this.spouseNameLabel.Size = new System.Drawing.Size(240, 18);
+            this.spouseNameLabel.ReadOnly = true;
+            this.spouseNameLabel.Size = new System.Drawing.Size(240, 19);
             this.spouseNameLabel.TabIndex = 33;
             this.spouseNameLabel.Text = "label25";
             // 
@@ -433,44 +417,54 @@
             // 
             // clientNameLabel
             // 
+            this.clientNameLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.clientNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.clientNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clientNameLabel.Location = new System.Drawing.Point(416, 32);
             this.clientNameLabel.Name = "clientNameLabel";
-            this.clientNameLabel.Size = new System.Drawing.Size(240, 18);
+            this.clientNameLabel.ReadOnly = true;
+            this.clientNameLabel.Size = new System.Drawing.Size(240, 19);
             this.clientNameLabel.TabIndex = 32;
             this.clientNameLabel.Text = "label24";
             // 
             // modifiedLabel
             // 
-            this.modifiedLabel.AutoSize = true;
+            this.modifiedLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.modifiedLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.modifiedLabel.Location = new System.Drawing.Point(126, 87);
             this.modifiedLabel.Name = "modifiedLabel";
-            this.modifiedLabel.Size = new System.Drawing.Size(54, 18);
+            this.modifiedLabel.ReadOnly = true;
+            this.modifiedLabel.Size = new System.Drawing.Size(54, 17);
             this.modifiedLabel.TabIndex = 31;
             this.modifiedLabel.Text = "label23";
             // 
             // createdLabel
             // 
-            this.createdLabel.AutoSize = true;
+            this.createdLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.createdLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.createdLabel.Location = new System.Drawing.Point(126, 59);
             this.createdLabel.Name = "createdLabel";
-            this.createdLabel.Size = new System.Drawing.Size(54, 18);
+            this.createdLabel.ReadOnly = true;
+            this.createdLabel.Size = new System.Drawing.Size(54, 17);
             this.createdLabel.TabIndex = 30;
             this.createdLabel.Text = "label22";
             // 
             // fileNumberLabel
             // 
+            this.fileNumberLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.fileNumberLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.fileNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileNumberLabel.Location = new System.Drawing.Point(126, 32);
             this.fileNumberLabel.Name = "fileNumberLabel";
-            this.fileNumberLabel.Size = new System.Drawing.Size(54, 18);
+            this.fileNumberLabel.ReadOnly = true;
+            this.fileNumberLabel.Size = new System.Drawing.Size(54, 19);
             this.fileNumberLabel.TabIndex = 29;
             this.fileNumberLabel.Text = "0000";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(261, 224);
+            this.label20.Location = new System.Drawing.Point(261, 244);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(52, 18);
             this.label20.TabIndex = 28;
@@ -479,7 +473,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(264, 197);
+            this.label19.Location = new System.Drawing.Point(314, 197);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 18);
             this.label19.TabIndex = 27;
@@ -488,7 +482,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(33, 251);
+            this.label18.Location = new System.Drawing.Point(33, 271);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(87, 18);
             this.label18.TabIndex = 26;
@@ -497,7 +491,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(33, 224);
+            this.label17.Location = new System.Drawing.Point(33, 244);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(87, 18);
             this.label17.TabIndex = 25;
@@ -512,37 +506,10 @@
             this.label16.TabIndex = 24;
             this.label16.Text = "Primary Phone:";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(680, 143);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(46, 18);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "State:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(510, 143);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(59, 18);
-            this.label14.TabIndex = 22;
-            this.label14.Text = "County:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(329, 143);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(37, 18);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "City:";
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(54, 143);
+            this.label12.Location = new System.Drawing.Point(54, 124);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(66, 18);
             this.label12.TabIndex = 20;
@@ -593,45 +560,21 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "File Number:";
             // 
-            // label21
+            // newClientButton
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(768, 143);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(32, 18);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "Zip:";
-            // 
-            // zipLabel
-            // 
-            this.zipLabel.Location = new System.Drawing.Point(806, 143);
-            this.zipLabel.Name = "zipLabel";
-            this.zipLabel.Size = new System.Drawing.Size(79, 18);
-            this.zipLabel.TabIndex = 48;
-            this.zipLabel.Text = "UT";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(261, 451);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 18);
-            this.label22.TabIndex = 49;
-            this.label22.Text = "Linked File:";
-            // 
-            // linkedFileLinkLabel
-            // 
-            this.linkedFileLinkLabel.AutoSize = true;
-            this.linkedFileLinkLabel.Location = new System.Drawing.Point(349, 451);
-            this.linkedFileLinkLabel.Name = "linkedFileLinkLabel";
-            this.linkedFileLinkLabel.Size = new System.Drawing.Size(122, 18);
-            this.linkedFileLinkLabel.TabIndex = 14;
-            this.linkedFileLinkLabel.TabStop = true;
-            this.linkedFileLinkLabel.Text = "No file attached...";
-            this.linkedFileLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkedFileLinkLabel_LinkClicked);
+            this.newClientButton.BackColor = System.Drawing.Color.Honeydew;
+            this.newClientButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newClientButton.Location = new System.Drawing.Point(889, 48);
+            this.newClientButton.Name = "newClientButton";
+            this.newClientButton.Size = new System.Drawing.Size(79, 23);
+            this.newClientButton.TabIndex = 51;
+            this.newClientButton.Text = "New Client";
+            this.newClientButton.UseVisualStyleBackColor = false;
+            this.newClientButton.Click += new System.EventHandler(this.newClientButton_Click);
             // 
             // ClientLookupForm
             // 
+            this.AcceptButton = this.searchButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -640,6 +583,7 @@
             this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(1020, 885);
             this.ControlBox = false;
+            this.Controls.Add(this.newClientButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.clearButton);
@@ -687,9 +631,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button editClientButton;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
@@ -700,28 +641,25 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label referredByLabel;
+        private System.Windows.Forms.TextBox referredByLabel;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label notesLabel;
-        private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.Label altPhone2Label;
-        private System.Windows.Forms.Label altPhone1Label;
-        private System.Windows.Forms.Label phoneLabel;
-        private System.Windows.Forms.Label stateLabel;
-        private System.Windows.Forms.Label countyLabel;
-        private System.Windows.Forms.Label cityLabel;
-        private System.Windows.Forms.Label addressLabel;
-        private System.Windows.Forms.Label spouseNameLabel;
-        private System.Windows.Forms.Label clientNameLabel;
-        private System.Windows.Forms.Label modifiedLabel;
-        private System.Windows.Forms.Label createdLabel;
-        private System.Windows.Forms.Label fileNumberLabel;
+        private System.Windows.Forms.TextBox notesLabel;
+        private System.Windows.Forms.TextBox emailLabel;
+        private System.Windows.Forms.TextBox altPhone2Label;
+        private System.Windows.Forms.TextBox altPhone1Label;
+        private System.Windows.Forms.TextBox phoneLabel;
+        private System.Windows.Forms.TextBox addressLabel;
+        private System.Windows.Forms.TextBox spouseNameLabel;
+        private System.Windows.Forms.TextBox clientNameLabel;
+        private System.Windows.Forms.TextBox modifiedLabel;
+        private System.Windows.Forms.TextBox createdLabel;
+        private System.Windows.Forms.TextBox fileNumberLabel;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label hasPlannerLabel;
+        private System.Windows.Forms.TextBox hasPlannerLabel;
         private System.Windows.Forms.HelpProvider helpProvider1;
-        private System.Windows.Forms.Label zipLabel;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.LinkLabel linkedFileLinkLabel;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button newClientButton;
     }
 }
