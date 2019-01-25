@@ -76,24 +76,28 @@ namespace EstateMastersInstitute
         private void EditClient()
         {
             EditClientForm editing_form = new EditClientForm();
+            editing_form.StartPosition = FormStartPosition.CenterParent;
             editing_form.ShowDialog();
         }
 
         private void ClientLookup()
         {
             ClientLookupForm lookup_form = new ClientLookupForm();
+            lookup_form.StartPosition = FormStartPosition.CenterParent;
             lookup_form.ShowDialog();
         }
 
         private void InvoicingOptions()
         {
             InvoicingForm invoicing_form = new InvoicingForm();
+            invoicing_form.StartPosition = FormStartPosition.CenterParent;
             invoicing_form.ShowDialog();
         }
 
         private void MailingOptions()
         {
             MailOptionsForm mailing_form = new MailOptionsForm();
+            mailing_form.StartPosition = FormStartPosition.CenterParent;
             mailing_form.ShowDialog();
         }
 

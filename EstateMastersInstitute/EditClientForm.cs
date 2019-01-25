@@ -82,7 +82,7 @@ namespace EstateMastersInstitute
 
             db_connect.Close();
             clientFirstTextBox.Focus();
-
+            changeOccurred = false;
         }
 
         private void EditClientForm_Load(object sender, EventArgs e)
@@ -332,6 +332,8 @@ namespace EstateMastersInstitute
 
                 db_comm = new SQLiteCommand(command_text, db_connect);
                 db_comm.ExecuteNonQuery();
+                db_connect.Close();
+                this.Close();
             }
             // If it already exists, try to update the record
             catch (Exception exc)
@@ -437,14 +439,14 @@ namespace EstateMastersInstitute
                             db_comm = new SQLiteCommand(command_text, db_connect);
                             db_comm.ExecuteNonQuery();
 
-                            MessageBox.Show("The file for " + client_name + " (#" + fileNumberTextBox.Text + ") has been updated!");
+                            // MessageBox.Show("The file for " + client_name + " (#" + fileNumberTextBox.Text + ") has been updated!");
                             db_connect.Close();
                             this.Close();
                         }
                         else if(result == DialogResult.No)
                         {
                             // Abandon changes and close the edit form
-                            MessageBox.Show("Changes abandoned.");
+                            // MessageBox.Show("Changes abandoned.");
                             db_connect.Close();
                             this.Close();
                         }
@@ -460,8 +462,6 @@ namespace EstateMastersInstitute
                 }
             }
             
-            db_connect.Close();
-            this.Close();
         }
 
         /*****************************************************************
@@ -835,6 +835,17 @@ namespace EstateMastersInstitute
             {
                 // Change the spouse's name to match the client's
                 spouseLastTextBox.Text = clientLastTextBox.Text;
+            }
+            else if(spouseFirstTextBox.Text != "")
+            {
+                if(clientTitleComboBox.Text == "Mr.")
+                {
+                    spouseTitleComboBox.Text = "Mrs.";
+                }
+                else if(clientTitleComboBox.Text == "Mrs.")
+                {
+                    spouseTitleComboBox.Text = "Mr.";
+                }
             }
 
             changeOccurred = true;

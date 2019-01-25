@@ -244,6 +244,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1040, 928);
             this.Name = "mainMenuForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Estate Masters Institute";
             this.Load += new System.EventHandler(this.EstateMastersInstitute_Load);
             ((System.ComponentModel.ISupportInitialize)(this.EditClientButton)).EndInit();
